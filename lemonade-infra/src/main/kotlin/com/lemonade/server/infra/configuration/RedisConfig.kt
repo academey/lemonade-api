@@ -3,7 +3,6 @@ package com.lemonade.server.infra.configuration
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import org.springframework.context.annotation.Primary
 import org.springframework.context.annotation.Profile
 import org.springframework.data.redis.cache.RedisCacheConfiguration
 import org.springframework.data.redis.cache.RedisCacheManager
@@ -14,15 +13,12 @@ import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSeriali
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer
 import org.springframework.data.redis.serializer.RedisSerializationContext
 import org.springframework.data.redis.serializer.StringRedisSerializer
-import org.testcontainers.containers.GenericContainer
 import kotlin.properties.Delegates
 
 @Profile("production")
 @Configuration
 @ConfigurationProperties(prefix = "spring.data.redis")
-class RedisConfig(
-
-) {
+class RedisConfig() {
     lateinit var host: String
     var port by Delegates.notNull<Int>()
 
