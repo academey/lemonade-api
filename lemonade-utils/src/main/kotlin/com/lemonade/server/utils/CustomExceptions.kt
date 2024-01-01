@@ -10,4 +10,6 @@ object CustomExceptions {
     class AlreadyExistException(msg: String? = null) : RuntimeException(msg)
 
     class ApiException(msg: String? = null) : RuntimeException(msg)
+
+    class UnAuthorized(msg: String? = null) : RuntimeException(msg)
 }

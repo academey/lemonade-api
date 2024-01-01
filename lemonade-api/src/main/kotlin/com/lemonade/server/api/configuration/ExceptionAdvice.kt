@@ -56,6 +56,15 @@ class ExceptionAdvice() {
         request: HttpServletRequest,
         e: CustomExceptions.AlreadyExistException,
     ): ApiResponse<*> {
-        return ApiResponse.createError(e.message ?: "해당 리소스를 발견하지 못했습니다")
+        return ApiResponse.createError(e.message ?: "이미 존재하는 리소스입니다.")
+    }
+
+    @ExceptionHandler(CustomExceptions.UnAuthorized::class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    fun unAuthorizedException(
+        request: HttpServletRequest,
+        e: CustomExceptions.UnAuthorized,
+    ): ApiResponse<*> {
+        return ApiResponse.createError(e.message ?: "해당 권한이 없습니다.")
     }
 }

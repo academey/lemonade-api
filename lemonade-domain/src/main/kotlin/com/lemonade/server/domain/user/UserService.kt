@@ -18,16 +18,20 @@ class UserService(
         name: String,
         picture: String?,
         rawPassword: String,
+        role: Role = Role.USER,
     ): User {
         if (userRepository.findByEmail(email) != null) {
             throw CustomExceptions.AlreadyExistException()
         }
 
-        return create(
-            email,
-            name,
-            picture,
-            rawPassword,
+        return userRepository.save(
+            User(
+                email = email,
+                name = name,
+                picture = picture,
+                role = role, // 최초 가입시 USER 로 설정
+                password = Password(rawPassword.let { passwordEncoder.encode(it) }),
+            ),
         )
     }
 
@@ -42,22 +46,6 @@ class UserService(
 
         return user
     }
-
-    fun create(
-        email: String,
-        name: String,
-        picture: String?,
-        rawPassword: String,
-    ): User =
-        userRepository.save(
-            User(
-                email = email,
-                name = name,
-                picture = picture,
-                role = Role.USER, // 최초 가입시 USER 로 설정
-                password = Password(rawPassword.let { passwordEncoder.encode(it) }),
-            ),
-        )
 
     fun update(
         user: User,

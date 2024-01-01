@@ -2,6 +2,7 @@ package com.lemonade.server.domain.configuration.security
 
 import com.lemonade.server.domain.configuration.security.user.CustomUserDetailsService
 import com.lemonade.server.domain.user.Role
+import com.lemonade.server.domain.user.UserService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -10,13 +11,13 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.http.SessionCreationPolicy
-import org.springframework.security.core.userdetails.User
 import org.springframework.security.web.SecurityFilterChain
 import org.springframework.security.web.savedrequest.NullRequestCache
 
 @Configuration
 @EnableWebSecurity
 class SecurityConfig(
+    private val userService: UserService,
     private val customUserDetailsService: CustomUserDetailsService,
 ) {
     @Bean
@@ -36,7 +37,14 @@ class SecurityConfig(
 
     @Autowired
     fun configureAdmin(auth: AuthenticationManagerBuilder) {
-        auth.inMemoryAuthentication()
-            .withUser(User.withUsername("admin").password("{noop}admin").roles(Role.ADMIN.name).build())
+        if (userService.findByEmail("admin@admin.com") == null) {
+            userService.signUp(
+                email = "admin@admin.com",
+                name = "admin",
+                picture = null,
+                rawPassword = "admin",
+                role = Role.ADMIN,
+            )
+        }
     }
 }
