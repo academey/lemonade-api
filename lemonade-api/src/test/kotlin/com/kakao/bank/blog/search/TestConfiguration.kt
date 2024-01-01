@@ -1,6 +1,6 @@
-package com.kakao.bank.blog.search
+package com.lemonade.server
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 
-@SpringBootApplication(scanBasePackages = ["com.kakao.bank.blog.search"])
+@SpringBootApplication(scanBasePackages = ["com.lemonade.server"])
 class TestConfiguration

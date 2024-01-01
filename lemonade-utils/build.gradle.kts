@@ -3,7 +3,7 @@
  */
 
 plugins {
-    id("com.kakao.bank.blog.search.kotlin-library-conventions")
+    id("com.lemonade.server.kotlin-library-conventions")
 }
 
 dependencies {
