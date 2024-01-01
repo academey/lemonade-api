@@ -5,7 +5,7 @@ import org.springframework.data.domain.Pageable
 import org.springframework.data.repository.CrudRepository
 
 interface PostRepository : CrudRepository<Post, Long> {
-    fun findAllByUser_Id(
+    fun findAllByUserId(
         userId: Long,
         pageable: Pageable,
     ): Page<Post>
