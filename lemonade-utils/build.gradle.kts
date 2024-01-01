@@ -7,6 +7,9 @@ plugins {
 }
 
 dependencies {
+    implementation("ch.qos.logback:logback-core:1.4.14")
+    implementation("ch.qos.logback:logback-access:1.4.14")
+    implementation("ch.qos.logback:logback-classic:1.4.14")
     implementation("com.fasterxml.jackson.core:jackson-core:2.16.0")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.16.0")
 }

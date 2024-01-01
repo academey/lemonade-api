@@ -23,3 +23,13 @@ spring:
     redis:
       host: localhost
       port: 6379
+
+logging:
+  file:
+    path: ./log
+  level:
+    root: info
+  logback:
+    rollingpolicy:
+      max-file-size: 500MB
+      max-history: 10

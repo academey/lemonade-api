@@ -5,6 +5,7 @@ import com.lemonade.server.api.controllers.dto.PostDto
 import com.lemonade.server.domain.post.PostService
 import com.lemonade.server.domain.user.UserRepository
 import com.lemonade.server.utils.CustomExceptions
+import com.lemonade.server.utils.LemonadeLogger
 import jakarta.validation.Valid
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Pageable
@@ -30,6 +31,10 @@ class PostApiController(
 //        @RequestParam sort: SearchDto.SortingParam = SearchDto.SortingParam.accuracy,
         pageable: Pageable = PageRequest.of(1, 10),
     ): ApiResponse<List<PostDto.PostResponse>> {
+        log.info("info hj test")
+        log.debug("debug hj test")
+        log.warn("warn hj test")
+        log.error("error hj test")
         return ApiResponse.createSuccess(
             postService.findAll(
                 pageable = pageable,
@@ -57,6 +62,7 @@ class PostApiController(
         @PathVariable postId: Long,
         @RequestBody @Valid requestDto: PostDto.UpdateReq,
     ): ApiResponse<PostDto.PostResponse> {
+
         return ApiResponse.createSuccess(
             postService.update(
                 user = userRepository.findByEmail(authentication.name) ?: throw CustomExceptions.NotFoundException(),
@@ -79,4 +85,6 @@ class PostApiController(
             ),
         )
     }
+
+    companion object: LemonadeLogger()
 }
