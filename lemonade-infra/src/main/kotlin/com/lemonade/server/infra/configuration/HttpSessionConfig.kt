@@ -1,4 +1,4 @@
-package com.lemonade.server.domain.configuration
+package com.lemonade.server.infra.configuration
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration

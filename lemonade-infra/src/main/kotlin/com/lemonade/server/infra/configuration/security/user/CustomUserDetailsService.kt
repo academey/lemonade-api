@@ -1,4 +1,4 @@
-package com.lemonade.server.domain.configuration.security.user
+package com.lemonade.server.infra.configuration.security.user
 
 import com.lemonade.server.domain.user.UserService
 import org.springframework.security.core.userdetails.UserDetails

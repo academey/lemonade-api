@@ -1,4 +1,4 @@
-package com.lemonade.server.domain.configuration
+package com.lemonade.server.infra.configuration
 
 import com.lemonade.server.domain.user.User
 import com.lemonade.server.domain.user.UserRepository

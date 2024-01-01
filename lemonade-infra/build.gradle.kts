@@ -16,12 +16,14 @@ dependencies {
     implementation("com.bucket4j:bucket4j-redis:8.7.0")
     implementation("com.bucket4j:bucket4j-core:8.7.0")
     implementation("org.springframework.boot:spring-boot-starter-webflux")
-
+    implementation("org.testcontainers:testcontainers")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
-
+    implementation("com.h2database:h2")
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.springframework.boot:spring-boot-starter-data-redis")
+    implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("org.springframework.session:spring-session-data-redis")
 
     implementation(project(":lemonade-domain"))
     implementation(project(":lemonade-utils"))

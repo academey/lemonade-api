@@ -1,6 +1,6 @@
-package com.lemonade.server.domain.configuration.security
+package com.lemonade.server.infra.configuration.security
 
-import com.lemonade.server.domain.configuration.security.user.CustomUserDetailsService
+import com.lemonade.server.infra.configuration.security.user.CustomUserDetailsService
 import com.lemonade.server.domain.user.Role
 import com.lemonade.server.domain.user.UserService
 import org.springframework.beans.factory.annotation.Autowired
