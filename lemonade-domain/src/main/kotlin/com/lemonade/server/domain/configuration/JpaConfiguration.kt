@@ -1,7 +1,7 @@
 package com.lemonade.server.domain.configuration
 
-import com.lemonade.server.domain.search.SearchResult
-import com.lemonade.server.domain.search.SearchResultRepository
+import com.lemonade.server.domain.user.User
+import com.lemonade.server.domain.user.UserRepository
 import org.springframework.boot.autoconfigure.domain.EntityScan
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -17,12 +17,12 @@ import java.util.Optional
 )
 @EntityScan(
     basePackageClasses = [
-        SearchResult::class,
+        User::class,
     ],
 )
 @EnableJpaRepositories(
     basePackageClasses = [
-        SearchResultRepository::class,
+        UserRepository::class,
     ],
 )
 class JpaConfiguration {

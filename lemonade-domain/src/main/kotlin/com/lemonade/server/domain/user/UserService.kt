@@ -29,7 +29,7 @@ class UserService(
                 email = email,
                 name = name,
                 picture = picture,
-                role = role, // 최초 가입시 USER 로 설정
+                role = role,
                 password = Password(rawPassword.let { passwordEncoder.encode(it) }),
             ),
         )
