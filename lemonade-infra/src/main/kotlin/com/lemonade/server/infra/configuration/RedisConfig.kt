@@ -15,15 +15,15 @@ import org.springframework.data.redis.serializer.RedisSerializationContext
 import org.springframework.data.redis.serializer.StringRedisSerializer
 import kotlin.properties.Delegates
 
-@Profile("production")
+@Profile("prod")
 @Configuration
 @ConfigurationProperties(prefix = "spring.data.redis")
-class RedisConfig() {
+class RedisConfig {
     lateinit var host: String
     var port by Delegates.notNull<Int>()
 
     @Bean
-    fun redisConnectionFactory(): RedisConnectionFactory {
+    fun redisConnectionFactory(): LettuceConnectionFactory {
         return LettuceConnectionFactory(host, port)
     }
 
