@@ -35,10 +35,25 @@ class PostApiController(
         log.debug("debug hj test")
         log.warn("warn hj test")
         log.error("error hj test")
-        return ApiResponse.createSuccess(
+        val page =
             postService.findAll(
                 pageable = pageable,
-            ).toList().map { PostDto.PostResponse.of(it) },
+            )
+        return ApiResponse.createSuccess(
+            data = page.content.map { PostDto.PostResponse.of(it) },
+            totalCount = page.totalElements,
+        )
+    }
+
+    @GetMapping("/{postId}")
+    fun findOne(
+        @PathVariable postId: Long,
+        pageable: Pageable = PageRequest.of(1, 10),
+    ): ApiResponse<PostDto.PostResponse> {
+        return ApiResponse.createSuccess(
+            postService.findById(
+                postId,
+            )?.let { PostDto.PostResponse.of(it) } ?: throw CustomExceptions.NotFoundException(),
         )
     }
 

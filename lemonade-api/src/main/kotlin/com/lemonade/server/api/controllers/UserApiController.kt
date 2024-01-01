@@ -3,6 +3,7 @@ package com.lemonade.server.api.controllers
 import com.lemonade.server.api.controllers.dto.ApiResponse
 import com.lemonade.server.api.controllers.dto.UserDto
 import com.lemonade.server.domain.user.UserService
+import com.lemonade.server.utils.CustomExceptions
 import jakarta.servlet.http.HttpSession
 import org.springframework.http.HttpStatus
 import org.springframework.security.core.Authentication
@@ -34,11 +35,10 @@ class UserApiController(
         ).let(UserDto.UserRes::of).let { ApiResponse.createSuccess(it) }
 
     @GetMapping("/sign-in")
-    fun signIn(authentication: Authentication): ApiResponse<UserDto.UserSimpleRes> {
-        return UserDto.UserSimpleRes(
-            email = authentication.name,
-            role = authentication.authorities.toList()[0].authority,
-        ).let { ApiResponse.createSuccess(it) }
+    fun signIn(authentication: Authentication): ApiResponse<UserDto.UserRes> {
+        return userService.findByEmail(authentication.name)?.let(UserDto.UserRes::of)?.let {
+            ApiResponse.createSuccess(it)
+        } ?: throw CustomExceptions.NotFoundException()
     }
 
     @DeleteMapping("/logout")

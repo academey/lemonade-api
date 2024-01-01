@@ -7,14 +7,18 @@ class ApiResponse<T> private constructor(
     val status: String,
     val data: T,
     val message: String?,
+    val totalCount: Long? = null,
 ) {
     companion object {
         private const val SUCCESS_STATUS = "success"
         private const val FAIL_STATUS = "fail"
         private const val ERROR_STATUS = "error"
 
-        fun <T> createSuccess(data: T): ApiResponse<T> {
-            return ApiResponse(SUCCESS_STATUS, data, null)
+        fun <T> createSuccess(
+            data: T,
+            totalCount: Long? = null,
+        ): ApiResponse<T> {
+            return ApiResponse(SUCCESS_STATUS, data, null, totalCount)
         }
 
         fun createSuccessWithNoContent(): ApiResponse<*> {
