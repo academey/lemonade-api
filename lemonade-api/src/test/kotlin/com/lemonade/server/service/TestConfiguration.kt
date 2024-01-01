@@ -1,4 +1,4 @@
-package com.lemonade.server
+package com.lemonade.server.service
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 
