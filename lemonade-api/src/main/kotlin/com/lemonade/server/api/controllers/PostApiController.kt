@@ -62,7 +62,6 @@ class PostApiController(
         @PathVariable postId: Long,
         @RequestBody @Valid requestDto: PostDto.UpdateReq,
     ): ApiResponse<PostDto.PostResponse> {
-
         return ApiResponse.createSuccess(
             postService.update(
                 user = userRepository.findByEmail(authentication.name) ?: throw CustomExceptions.NotFoundException(),
@@ -86,5 +85,5 @@ class PostApiController(
         )
     }
 
-    companion object: LemonadeLogger()
+    companion object : LemonadeLogger()
 }
